@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FullstackProjectWeek2.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class StudentsController : ControllerBase
@@ -31,6 +32,7 @@ namespace FullstackProjectWeek2.Controllers
             return studentReadDTO;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IEnumerable<StudentReadDTO>> GetAll()
         {
@@ -39,6 +41,7 @@ namespace FullstackProjectWeek2.Controllers
             return studentReadDTOs;
         }
 
+        [AllowAnonymous]
         [HttpGet("SearchStudent")]
         public async Task<ActionResult> Search(string name)
         {
@@ -54,6 +57,7 @@ namespace FullstackProjectWeek2.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<StudentReadDTO> Get(int id)
         {
