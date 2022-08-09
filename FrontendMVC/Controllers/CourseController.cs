@@ -13,14 +13,8 @@ namespace FrontendMVC.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var results = await _course.GetAll();
-            string strResult = string.Empty;
-            foreach (var result in results)
-            {
-                strResult += result.Title + "\n";
-            }
-            return Content(strResult);
-            //return View();
+            var model = await _course.GetAll();
+            return View(model);
         }
     }
 }
