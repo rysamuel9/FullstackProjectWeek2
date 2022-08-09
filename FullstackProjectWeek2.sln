@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FullstackProjectWeek2", "FullstackProjectWeek2\FullstackProjectWeek2.csproj", "{58ACB274-839A-4599-8ACF-A88993512607}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FullstackProjectWeek2", "FullstackProjectWeek2\FullstackProjectWeek2.csproj", "{58ACB274-839A-4599-8ACF-A88993512607}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrontendMVC", "FrontendMVC\FrontendMVC.csproj", "{D4A098BD-509C-40CD-BEC0-FBFD2FBB3B0D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{58ACB274-839A-4599-8ACF-A88993512607}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58ACB274-839A-4599-8ACF-A88993512607}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58ACB274-839A-4599-8ACF-A88993512607}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4A098BD-509C-40CD-BEC0-FBFD2FBB3B0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4A098BD-509C-40CD-BEC0-FBFD2FBB3B0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4A098BD-509C-40CD-BEC0-FBFD2FBB3B0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4A098BD-509C-40CD-BEC0-FBFD2FBB3B0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
