@@ -54,5 +54,40 @@ namespace FullstackProjectWeek2.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> Update(StudentCreateDTO studentCreateDTO, int id)
+        {
+            try
+            {
+                var updateStudent = new Student
+                {
+                    ID = id,
+                    LastName = studentCreateDTO.LastName,
+                    FirstMidName = studentCreateDTO.FirstMidName,
+                };
+
+                var result = await _student.Update(updateStudent);
+                return Ok(studentCreateDTO);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            try
+            {
+                await _student.Delete(id);
+                return Ok($"Student ID: {id} berhasil didelete");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
