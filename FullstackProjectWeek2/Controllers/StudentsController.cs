@@ -42,6 +42,15 @@ namespace FullstackProjectWeek2.Controllers
         }
 
         [AllowAnonymous]
+        [HttpGet("WithEnrollments")]
+        public async Task<IEnumerable<StudentsWithEnrollmentsDTO>> GetStudentWithEnrollments()
+        {
+            var results = await _student.WithCourse();
+            var studentsWithCourse = _mapper.Map<IEnumerable<StudentsWithEnrollmentsDTO>>(results);
+            return studentsWithCourse;
+        }
+
+        [AllowAnonymous]
         [HttpGet("SearchStudent")]
         public async Task<ActionResult> Search(string name)
         {

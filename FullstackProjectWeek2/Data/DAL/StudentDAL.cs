@@ -126,5 +126,15 @@ namespace FullstackProjectWeek2.Data.DAL
                 throw new Exception($"{ex.Message}");
             }
         }
+
+        public async Task<IEnumerable<Student>> WithCourse()
+        {
+            var students = await _context.Students.Include(s => s.Enrollments)
+                .OrderBy(s => s.FirstMidName)
+                .AsNoTracking()
+                .ToListAsync();
+
+            return students;
+        }
     }
 }

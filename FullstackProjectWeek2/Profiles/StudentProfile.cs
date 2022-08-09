@@ -13,6 +13,9 @@ namespace FullstackProjectWeek2.Profiles
 
             CreateMap<Student, StudentReadDTO>();
             CreateMap<StudentReadDTO, Student>();
+
+            CreateMap<Student, StudentsWithEnrollmentsDTO>();
+            CreateMap<StudentsWithEnrollmentsDTO, Student>();
         }
     }
 }

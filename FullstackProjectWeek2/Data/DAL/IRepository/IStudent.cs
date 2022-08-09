@@ -7,5 +7,6 @@ namespace FullstackProjectWeek2.Data.DAL.IRepository
     {
         Task<IEnumerable<Student>> SearchByName(string name);
         Task<IEnumerable<Student>> Paging(PaginationParams @params);
+        Task<IEnumerable<Student>> WithCourse();
     }
 }
