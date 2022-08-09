@@ -1,7 +1,12 @@
+using FrontendMVC.Services;
+using FrontendMVC.Services.IRepository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<ICourse, CourseServices>();
 
 var app = builder.Build();
 
