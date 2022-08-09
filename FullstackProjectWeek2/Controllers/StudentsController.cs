@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using FullstackProjectWeek2.Data.DAL.IRepository;
+using FullstackProjectWeek2.Data.DAL.Pagination;
 using FullstackProjectWeek2.Domain;
 using FullstackProjectWeek2.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,12 +22,36 @@ namespace FullstackProjectWeek2.Controllers
             _mapper = mapper;
         }
 
+        [AllowAnonymous]
+        [HttpGet("Paging")]
+        public async Task<IEnumerable<StudentReadDTO>> Paging([FromQuery] PaginationParams @params)
+        {
+            var results = await _student.Paging(@params);
+            var studentReadDTO = _mapper.Map<IEnumerable<StudentReadDTO>>(results);
+            return studentReadDTO;
+        }
+
         [HttpGet]
         public async Task<IEnumerable<StudentReadDTO>> GetAll()
         {
             var results = await _student.GetAll();
             var studentReadDTOs = _mapper.Map<IEnumerable<StudentReadDTO>>(results);
             return studentReadDTOs;
+        }
+
+        [HttpGet("SearchStudent")]
+        public async Task<ActionResult> Search(string name)
+        {
+            var results = await _student.SearchByName(name);
+            if (results != null)
+            {
+                var readResults = _mapper.Map<IEnumerable<StudentReadDTO>>(results);
+                return Ok(readResults);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
         [HttpGet("{id}")]

@@ -1,4 +1,5 @@
 ﻿using FullstackProjectWeek2.Data.DAL.IRepository;
+using FullstackProjectWeek2.Data.DAL.Pagination;
 using FullstackProjectWeek2.Domain;
 using Microsoft.EntityFrameworkCore;
 
@@ -74,6 +75,34 @@ namespace FullstackProjectWeek2.Data.DAL
             catch (Exception ex)
             {
                 throw new Exception($"Error: {ex.Message}");
+            }
+        }
+
+        public async Task<IEnumerable<Student>> Paging(PaginationParams @params)
+        {
+            var results = await _context.Students
+                 .OrderBy(s => s.LastName)
+                 .Skip((@params.Page - 1) * @params.ItemsPerPage)
+                 .Take(@params.ItemsPerPage)
+                 .ToArrayAsync();
+            return results;
+        }
+
+        public async Task<IEnumerable<Student>> SearchByName(string name)
+        {
+            try
+            {
+                var results = await _context.Students.Where(s => s.FirstMidName.Contains(name)).ToListAsync();
+                if (results == null)
+                {
+                    throw new Exception($"Student {name} tidak ditemukan");
+                }
+
+                return results;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"{ex.Message}");
             }
         }
 
