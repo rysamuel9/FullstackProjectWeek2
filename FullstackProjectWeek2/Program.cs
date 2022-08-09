@@ -64,6 +64,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddScoped<IUser, UserDAL>();
 builder.Services.AddScoped<ICourse, CourseDAL>();
+builder.Services.AddScoped<IStudent, StudentDAL>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
