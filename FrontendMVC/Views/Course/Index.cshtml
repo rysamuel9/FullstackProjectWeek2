@@ -11,50 +11,53 @@
     <li class="breadcrumb-item active">Course</li>
 </ol>
 
-<div class="card-mb-4">
-    <div class="card-body">
-        <div class="col-md-6">
-            <p>
-                <a asp-action="Create">Create New</a>
-            </p>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.CourseID)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Title)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Credits)
-                        </th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
+<div class="container">
+    <div class="row">
+        <div class="card-mb-4">
+            <div class="card-body">
+                <p>
+                    <a class="btn btn-primary" asp-action="Create">Create New</a>
+                </p>
+                <table class="table table-hover">
+                    <thead>
                         <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CourseID)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Title)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Credits)
-                            </td>
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                <a class="btn btn-info btn sm" asp-action="Details" asp-route-id="@item.CourseID">Details</a>
-                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                            </td>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CourseID)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Title)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Credits)
+                            </th>
+                            <th>
+                                Action
+                            </th>
                         </tr>
-                    }
-                </tbody>
-            </table>
-
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CourseID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Credits)
+                                </td>
+                                <td>
+                                    <a class="btn btn-warning btn-sm" asp-action="Update" asp-route-id="@item.CourseID">Update</a>
+                                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.CourseID">Details</a>
+                                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.CourseID">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

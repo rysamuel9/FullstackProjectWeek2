@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FullstackProjectWeek2.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CoursesController : ControllerBase
