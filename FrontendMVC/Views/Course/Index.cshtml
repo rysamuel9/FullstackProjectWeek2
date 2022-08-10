@@ -7,7 +7,7 @@
 
 <h1 class="mt-4">List Course</h1>
 <ol class="breadcrumb mb-4">
-     <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
     <li class="breadcrumb-item active">Course</li>
 </ol>
 
@@ -47,7 +47,7 @@
                             </td>
                             <td>
                                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                <a class="btn btn-info btn sm" asp-action="Details" asp-route-id="@item.CourseID">Details</a>
                                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
                             </td>
                         </tr>

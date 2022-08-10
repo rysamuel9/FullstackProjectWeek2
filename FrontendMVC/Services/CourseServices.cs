@@ -9,7 +9,7 @@ namespace FrontendMVC.Services
         public async Task<IEnumerable<Course>> GetAll()
         {
             List<Course> courses = new List<Course>();
-            using(var httpClient = new HttpClient())
+            using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync("https://localhost:7093/api/Courses"))
                 {
@@ -23,7 +23,20 @@ namespace FrontendMVC.Services
 
         public async Task<Course> GetById(int id)
         {
-            throw new NotImplementedException();
+            Course course = new Course();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync($"https://localhost:7093/api/Courses/{id}"))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        course = JsonConvert.DeserializeObject<Course>(apiResponse);
+                    }
+                }
+            }
+
+            return course;
         }
     }
 }
