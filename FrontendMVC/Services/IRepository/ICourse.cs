@@ -1,4 +1,5 @@
 ﻿using FrontendMVC.Models;
+using FrontendMVC.ViewModels;
 
 namespace FrontendMVC.Services.IRepository
 {
@@ -6,5 +7,6 @@ namespace FrontendMVC.Services.IRepository
     {
         Task<IEnumerable<Course>> GetAll();
         Task<Course> GetById(int id);
+        Task<Course> Insert(CourseCreateViewModel obj);
     }
 }
