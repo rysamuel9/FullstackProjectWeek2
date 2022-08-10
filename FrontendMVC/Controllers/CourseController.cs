@@ -1,5 +1,6 @@
 ﻿using FrontendMVC.Services.IRepository;
 using FrontendMVC.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FrontendMVC.Controllers
@@ -24,6 +25,7 @@ namespace FrontendMVC.Controllers
             return View(model);
         }
 
+        [Authorize]
         public async Task<IActionResult> Create()
         {
             return View();
