@@ -8,9 +8,16 @@ namespace FrontendMVC.Services
 {
     public class StudentServices : IStudent
     {
-        public Task Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.DeleteAsync($"https://localhost:7093/api/Students/{id}"))
+                {
+                    if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                        throw new Exception($"Gagal untuk delete data");
+                }
+            }
         }
 
         public async Task<IEnumerable<Student>> GetAll()

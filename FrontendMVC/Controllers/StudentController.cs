@@ -43,5 +43,27 @@ namespace FrontendMVC.Controllers
                 return View();
             }
         }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var model = await _student.GetById(id);
+            return View(model);
+        }
+
+        [ActionName("Delete")]
+        [HttpPost]
+        public async Task<IActionResult> DeletePost(int id)
+        {
+            try
+            {
+                await _student.Delete(id);
+                TempData["pesan"] = $"<div class='alert alert-success alert-dismissible fade show'><button type='button' class='btn-close' data-bs-dismiss='alert'></button> Berhasil mendelete data course id: {id}</div>";
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                return View();
+            }
+        }
     }
 }
