@@ -1,0 +1,66 @@
+﻿@model IEnumerable<FrontendMVC.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="mt-4">List Students</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+    <li class="breadcrumb-item active">Students</li>
+</ol>
+
+<div class="container">
+    <div class="row">
+        <div class="card-mb-4">
+            <div class="card-body">
+                <p>
+                    <a class="btn-primary btn-primary" asp-action="Create">Create New</a>
+                </p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Id)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.LastName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FirstMidName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.EnrollmentDate)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LastName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FirstMidName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EnrollmentDate)
+                                </td>
+                                <td>
+                                    <a class="btn btn-warning btn-sm" asp-action="Update" asp-route-id="@item.Id">Update</a>
+                                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
