@@ -72,9 +72,22 @@ namespace FrontendMVC.Services
             return student;
         }
 
-        public Task<Student> Update(Student obj)
+        public async Task<Student> Update(Student obj)
         {
-            throw new NotImplementedException();
+            Student student = await GetById(obj.Id);
+            if (student == null)
+                throw new Exception($"Data student dengan id {obj.Id} tidak ditemukan");
+            StringContent content = new StringContent(JsonConvert.SerializeObject(obj),
+                  Encoding.UTF8, "application/json");
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.PutAsync($"https://localhost:7093/api/Students/{obj.Id}", content))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    student = JsonConvert.DeserializeObject<Student>(apiResponse);
+                }
+            }
+            return student;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using FrontendMVC.Services.IRepository;
+﻿using FrontendMVC.Models;
+using FrontendMVC.Services.IRepository;
 using FrontendMVC.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -36,6 +37,26 @@ namespace FrontendMVC.Controllers
             try
             {
                 var result = await _student.Insert(course);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                return View();
+            }
+        }
+
+        public async Task<IActionResult> Update(int id)
+        {
+            var model = await _student.GetById(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(Student student)
+        {
+            try
+            {
+                var result = await _student.Update(student);
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
