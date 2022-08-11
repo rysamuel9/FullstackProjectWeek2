@@ -2,6 +2,7 @@
 using FrontendMVC.Services.IRepository;
 using FrontendMVC.ViewModels;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace FrontendMVC.Services
 {
@@ -45,9 +46,23 @@ namespace FrontendMVC.Services
             return student;
         }
 
-        public Task<Student> Insert(StudentCreateViewModel obj)
+        public async Task<Student> Insert(StudentCreateViewModel obj)
         {
-            throw new NotImplementedException();
+            Student student = new Student();
+            using (var httpClient = new HttpClient())
+            {
+                StringContent content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
+                using (var response = await httpClient.PostAsync("https://localhost:7093/api/Students", content))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.Created)
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        student = JsonConvert.DeserializeObject<Student>(apiResponse);
+                    }
+                }
+            }
+
+            return student;
         }
 
         public Task<Student> Update(Student obj)
