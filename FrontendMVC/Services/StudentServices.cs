@@ -27,9 +27,22 @@ namespace FrontendMVC.Services
             return students;
         }
 
-        public Task<Student> GetById(int id)
+        public async Task<Student> GetById(int id)
         {
-            throw new NotImplementedException();
+            Student student = new Student();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync($"https://localhost:7093/api/Students/{id}"))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        student = JsonConvert.DeserializeObject<Student>(apiResponse);
+                    }
+                }
+            }
+
+            return student;
         }
 
         public Task<Student> Insert(StudentCreateViewModel obj)

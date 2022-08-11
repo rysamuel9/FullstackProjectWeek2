@@ -11,10 +11,17 @@ namespace FrontendMVC.Controllers
         {
             _student = student;
         }
+
         public async Task<IActionResult> Index()
         {
             var models = await _student.GetAll();
             return View(models);
+        }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            var model = await _student.GetById(id);
+            return View(model);
         }
     }
 }

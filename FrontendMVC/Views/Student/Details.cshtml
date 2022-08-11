@@ -1,0 +1,49 @@
+﻿@model FrontendMVC.Models.Student
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 class="mt-4">Detail Student</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+    <li class="breadcrumb-item active">Detail Student</li>
+</ol>
+
+<div class="card-mb-4">
+    <div class="card-body">
+        <div class="col-md-6">
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Id)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Id)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.LastName)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.LastName)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.FirstMidName)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.FirstMidName)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.EnrollmentDate)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.EnrollmentDate)
+                </dd>
+            </dl>
+        </div>
+        <div>
+            @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+            <a asp-action="Index">Back to List</a>
+        </div>
+
+    </div>
+</div>
