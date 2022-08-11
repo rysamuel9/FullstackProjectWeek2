@@ -82,7 +82,7 @@ namespace FrontendMVC.Services
                   Encoding.UTF8, "application/json");
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.PutAsync("https://localhost:7093/api/Courses/", content))
+                using (var response = await httpClient.PutAsync($"https://localhost:7093/api/Courses/{obj.CourseID}", content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     course = JsonConvert.DeserializeObject<Course>(apiResponse);
