@@ -1,5 +1,6 @@
 ﻿using FullstackProjectWeek2.Data.DAL.IRepository;
 using FullstackProjectWeek2.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace FullstackProjectWeek2.Data.DAL
 {
@@ -10,6 +11,21 @@ namespace FullstackProjectWeek2.Data.DAL
         public EnrollmentDAL(AppDbContext context)
         {
             _context = context;
+        }
+
+        public Task Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<Enrollment>> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Enrollment> GetById(int id)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<Enrollment> Insert(Enrollment entity)
@@ -24,6 +40,11 @@ namespace FullstackProjectWeek2.Data.DAL
             {
                 throw new Exception($"Error: {ex.Message}");
             }
+        }
+
+        public Task<Enrollment> Update(Enrollment entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -2,8 +2,7 @@
 
 namespace FullstackProjectWeek2.Data.DAL.IRepository
 {
-    public interface IEnrollment
+    public interface IEnrollment : ICrud<Enrollment>
     {
-        Task<Enrollment> Insert(Enrollment entity);
     }
 }

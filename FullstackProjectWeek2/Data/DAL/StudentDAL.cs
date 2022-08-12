@@ -129,12 +129,25 @@ namespace FullstackProjectWeek2.Data.DAL
 
         public async Task<IEnumerable<Student>> WithCourse()
         {
-            var students = await _context.Students.Include(s => s.Enrollments)
-                .OrderBy(s => s.FirstMidName)
+            //    var students = await _context.Students
+            //        .Include(s => s.Enrollments)
+            //        .ThenInclude(s => s.Course)
+            //        .AsNoTracking()
+            //        .ToListAsync();
+
+            //    return students;
+
+            var students = await _context.Students
+                .Include(s => s.Enrollments)
                 .AsNoTracking()
                 .ToListAsync();
 
             return students;
+        }
+
+        public Task<IEnumerable<Student>> WithEnrollment()
+        {
+            throw new NotImplementedException();
         }
     }
 }
