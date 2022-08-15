@@ -13,9 +13,24 @@ namespace FullstackProjectWeek2.Data.DAL
             _context = context;
         }
 
-        public Task Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var deleteEnrollment = await _context.Enrollments.FirstOrDefaultAsync(e => e.EnrollmentID == id);
+                if (deleteEnrollment == null)
+                {
+                    throw new Exception($"Enrollment ID: {id} tidak ditemuan");
+                }
+
+                _context.Enrollments.Remove(deleteEnrollment);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception($"{ex.Message}");
+            }
         }
 
         public async Task<IEnumerable<Enrollment>> GetAll()
@@ -62,9 +77,26 @@ namespace FullstackProjectWeek2.Data.DAL
             }
         }
 
-        public Task<Enrollment> Update(Enrollment entity)
+        public async Task<Enrollment> Update(Enrollment entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var updateEnrollment = await _context.Enrollments.FirstOrDefaultAsync(e => e.EnrollmentID == entity.EnrollmentID);
+                if (updateEnrollment == null)
+                {
+                    throw new Exception($"Enrollment dengan ID: {entity.EnrollmentID} tidak ditemukan");
+                }
+                updateEnrollment.StudentID = entity.StudentID;
+                updateEnrollment.CourseID = entity.CourseID;
+                updateEnrollment.Grade = entity.Grade;
+
+                await _context.SaveChangesAsync();
+                return entity;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"{ex.Message}");
+            }
         }
     }
 }

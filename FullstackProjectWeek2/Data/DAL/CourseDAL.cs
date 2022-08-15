@@ -27,10 +27,10 @@ namespace FullstackProjectWeek2.Data.DAL
                 _context.Courses.Remove(deleteCourse);
                 await _context.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw new Exception($"{ex.Message}");
             }
         }
 
