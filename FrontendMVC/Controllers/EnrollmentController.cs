@@ -22,6 +22,11 @@ namespace FrontendMVC.Controllers
         {
             return View();
         }
+        public async Task<IActionResult> Details(int id)
+        {
+            var model = await _enrollment.GetById(id);
+            return View(model);
+        }
 
         [HttpPost]
         public async Task<IActionResult> Create(EnrollmentCreateViewModel enrollment)

@@ -28,9 +28,22 @@ namespace FrontendMVC.Services
             return enrollments;
         }
 
-        public Task<Enrollment> GetById(int id)
+        public async Task<Enrollment> GetById(int id)
         {
-            throw new NotImplementedException();
+            Enrollment enrollment = new Enrollment();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync($"https://localhost:7093/api/Enrollments/{id}"))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        enrollment = JsonConvert.DeserializeObject<Enrollment>(apiResponse);
+                    }
+                }
+            }
+
+            return enrollment;
         }
 
         public async Task<Enrollment> Insert(EnrollmentCreateViewModel obj)
