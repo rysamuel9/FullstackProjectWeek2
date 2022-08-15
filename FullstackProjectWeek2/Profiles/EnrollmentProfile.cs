@@ -10,6 +10,10 @@ namespace FullstackProjectWeek2.Profiles
         {
             CreateMap<Enrollment, EnrollmentDTO>();
             CreateMap<EnrollmentDTO, Enrollment>();
+
+            CreateMap<Enrollment, EnrollmentReadDTO>();
+            CreateMap<EnrollmentReadDTO, Enrollment>();
+
         }
     }
 }

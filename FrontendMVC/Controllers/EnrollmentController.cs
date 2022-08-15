@@ -1,4 +1,5 @@
 ﻿using FrontendMVC.Services.IRepository;
+using FrontendMVC.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FrontendMVC.Controllers
@@ -11,9 +12,29 @@ namespace FrontendMVC.Controllers
         {
             _enrollment = enrollment;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
+        {
+            var models = await _enrollment.GetAll();
+            return View(models);
+        }
+
+        public async Task<IActionResult> Create()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(EnrollmentCreateViewModel enrollment)
+        {
+            try
+            {
+                var result = await _enrollment.Insert(enrollment);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                return View();
+            }
         }
     }
 }

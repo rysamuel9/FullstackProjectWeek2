@@ -20,12 +20,32 @@ namespace FullstackProjectWeek2.Data.DAL
 
         public async Task<IEnumerable<Enrollment>> GetAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var results = await _context.Enrollments.OrderBy(e => e.StudentID).ToListAsync();
+                return results;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error: {ex.Message}");
+            }
         }
 
-        public Task<Enrollment> GetById(int id)
+        public async Task<Enrollment> GetById(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result = await _context.Enrollments.FirstOrDefaultAsync(e => e.EnrollmentID == id);
+                if (result == null)
+                {
+                    throw new Exception($"Enrollment ID {id} tidak ditemukan");
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"{ex.Message}");
+            }
         }
 
         public async Task<Enrollment> Insert(Enrollment entity)
