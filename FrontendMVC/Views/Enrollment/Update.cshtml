@@ -1,0 +1,45 @@
+﻿@model FrontendMVC.Models.Enrollment
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h1>Update</h1>
+
+<h4>Enrollment</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Update">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-3 mt-3">
+                <label asp-for="EnrollmentID" class="form-label"></label>
+                <input asp-for="EnrollmentID" class="form-control" readonly="readonly" />
+                <span asp-validation-for="EnrollmentID" class="text-danger"></span>
+            </div>
+            <div class="mb-3 mt-3">
+                <label asp-for="StudentID" class="form-label"></label>
+                <input asp-for="StudentID" class="form-control" readonly="readonly" />
+                <span asp-validation-for="StudentID" class="text-danger"></span>
+            </div>
+            <div class="mb-3 mt-3">
+                <label asp-for="CourseID" class="form-label"></label>
+                <input asp-for="CourseID" class="form-control" />
+                <span asp-validation-for="CourseID" class="text-danger"></span>
+            </div>
+            <div class="mb-3 mt-3">
+                <label asp-for="Grade" class="form-label"></label>
+                <input asp-for="Grade" class="form-control" />
+                <span asp-validation-for="Grade" class="text-danger"></span>
+            </div>
+            <div class="mb-3 mt-3">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

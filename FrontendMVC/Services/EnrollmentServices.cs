@@ -8,9 +8,16 @@ namespace FrontendMVC.Services
 {
     public class EnrollmentServices : IEnrollment
     {
-        public Task Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.DeleteAsync($"https://localhost:7093/api/Enrollments/{id}"))
+                {
+                    if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                        throw new Exception($"Gagal untuk delete data");
+                }
+            }
         }
 
         public async Task<IEnumerable<Enrollment>> GetAll()
@@ -65,9 +72,22 @@ namespace FrontendMVC.Services
             return enrollment;
         }
 
-        public Task<Enrollment> Update(Enrollment obj)
+        public async Task<Enrollment> Update(Enrollment obj)
         {
-            throw new NotImplementedException();
+            Enrollment course = await GetById(obj.EnrollmentID);
+            if (course == null)
+                throw new Exception($"Enrollment dengan ID {obj.EnrollmentID} tidak ditemukan");
+            StringContent content = new StringContent(JsonConvert.SerializeObject(obj),
+                  Encoding.UTF8, "application/json");
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.PutAsync($"https://localhost:7093/api/Enrollments/{obj.EnrollmentID}", content))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    course = JsonConvert.DeserializeObject<Enrollment>(apiResponse);
+                }
+            }
+            return course;
         }
     }
 }
