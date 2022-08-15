@@ -18,14 +18,15 @@ namespace FrontendMVC.Controllers
             return View(models);
         }
 
-        public async Task<IActionResult> Create()
-        {
-            return View();
-        }
         public async Task<IActionResult> Details(int id)
         {
             var model = await _enrollment.GetById(id);
             return View(model);
+        }
+
+        public async Task<IActionResult> Create()
+        {
+            return View();
         }
 
         [HttpPost]
