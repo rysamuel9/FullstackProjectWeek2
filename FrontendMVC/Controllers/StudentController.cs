@@ -14,10 +14,29 @@ namespace FrontendMVC.Controllers
             _student = student;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pg = 1)
         {
             var models = await _student.GetAll();
-            return View(models);
+
+            const int pageSize = 5;
+            if (pg < 1)
+            {
+                pg = 1;
+            }
+
+            int recsCount = models.Count();
+
+            var pager = new Pager(recsCount, pg, pageSize);
+
+            int recSkip = (pg - 1) * pageSize;
+
+            var data = models.Skip(recSkip).Take(pager.PageSize).ToList();
+
+            this.ViewBag.Pager = pager;
+
+            //return View(models);
+
+            return View(data);
         }
 
         public async Task<IActionResult> Details(int id)
