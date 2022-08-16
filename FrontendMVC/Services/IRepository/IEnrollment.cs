@@ -7,7 +7,7 @@ namespace FrontendMVC.Services.IRepository
     {
         Task<IEnumerable<Enrollment>> GetAll();
         Task<Enrollment> GetById(int id);
-        Task<Enrollment> Insert(EnrollmentCreateViewModel obj);
+        Task<Enrollment> Insert(Enrollment obj);
         Task<Enrollment> Update(Enrollment obj);
         Task Delete(int id);
     }

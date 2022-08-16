@@ -2,16 +2,21 @@
 using FrontendMVC.Services.IRepository;
 using FrontendMVC.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FrontendMVC.Controllers
 {
     public class EnrollmentController : Controller
     {
         private readonly IEnrollment _enrollment;
+        private readonly ICourse _course;
+        private readonly IStudent _student;
 
-        public EnrollmentController(IEnrollment enrollment)
+        public EnrollmentController(IEnrollment enrollment, ICourse course, IStudent student)
         {
             _enrollment = enrollment;
+            _course = course;
+            _student = student;
         }
         public async Task<IActionResult> Index()
         {
@@ -27,11 +32,27 @@ namespace FrontendMVC.Controllers
 
         public async Task<IActionResult> Create()
         {
+            ViewBag.Course = new SelectList(await _course.GetAll(), "CourseID", "Title");
+            ViewBag.Student = new SelectList(await _student.GetAll(), "ID", "LastName");
             return View();
         }
 
+        //[HttpPost]
+        //public async Task<IActionResult> Create(EnrollmentCreateViewModel enrollment)
+        //{
+        //    try
+        //    {
+        //        var result = await _enrollment.Insert(enrollment);
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return View();
+        //    }
+        //}
+
         [HttpPost]
-        public async Task<IActionResult> Create(EnrollmentCreateViewModel enrollment)
+        public async Task<IActionResult> Create(Enrollment enrollment)
         {
             try
             {
