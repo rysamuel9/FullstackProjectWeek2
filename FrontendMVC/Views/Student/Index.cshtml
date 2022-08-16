@@ -68,7 +68,7 @@
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.Id)
+                                @Html.DisplayNameFor(model => model.ID)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.LastName)
@@ -87,7 +87,7 @@
                         {
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Id)
+                                    @Html.DisplayFor(modelItem => item.ID)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.LastName)
@@ -99,9 +99,9 @@
                                     @Html.DisplayFor(modelItem => item.EnrollmentDate)
                                 </td>
                                 <td>
-                                    <a class="btn btn-warning btn-sm" asp-action="Update" asp-route-id="@item.Id">Update</a>
-                                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                    <a class="btn btn-warning btn-sm" asp-action="Update" asp-route-id="@item.ID">Update</a>
+                                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.ID">Details</a>
+                                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.ID">Delete</a>
                                 </td>
                             </tr>
                         }

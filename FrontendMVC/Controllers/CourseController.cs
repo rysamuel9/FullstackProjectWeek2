@@ -18,7 +18,7 @@ namespace FrontendMVC.Controllers
         {
             var model = await _course.GetAll();
 
-            const int pageSize = 5;
+            const int pageSize = 10;
             if (pg < 1)
             {
                 pg = 1;

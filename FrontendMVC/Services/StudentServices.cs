@@ -74,14 +74,14 @@ namespace FrontendMVC.Services
 
         public async Task<Student> Update(Student obj)
         {
-            Student student = await GetById(obj.Id);
+            Student student = await GetById(obj.ID);
             if (student == null)
-                throw new Exception($"Data student dengan id {obj.Id} tidak ditemukan");
+                throw new Exception($"Data student dengan id {obj.ID} tidak ditemukan");
             StringContent content = new StringContent(JsonConvert.SerializeObject(obj),
                   Encoding.UTF8, "application/json");
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.PutAsync($"https://localhost:7093/api/Students/{obj.Id}", content))
+                using (var response = await httpClient.PutAsync($"https://localhost:7093/api/Students/{obj.ID}", content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     student = JsonConvert.DeserializeObject<Student>(apiResponse);

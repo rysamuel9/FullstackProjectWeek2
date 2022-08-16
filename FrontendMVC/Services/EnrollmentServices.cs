@@ -53,7 +53,7 @@ namespace FrontendMVC.Services
             return enrollment;
         }
 
-        public async Task<Enrollment> Insert(EnrollmentCreateViewModel obj)
+        public async Task<Enrollment> Insert(Enrollment obj)
         {
             Enrollment enrollment = new Enrollment();
             using (var httpClient = new HttpClient())
