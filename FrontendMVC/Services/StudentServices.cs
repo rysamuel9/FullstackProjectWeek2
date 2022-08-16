@@ -53,6 +53,20 @@ namespace FrontendMVC.Services
             return student;
         }
 
+        public async Task<IEnumerable<StudentWithEnrollment>> GetWithEnrollment()
+        {
+            List<StudentWithEnrollment> samurais = new List<StudentWithEnrollment>();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:7093/api/Students/WithEnrollments"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    samurais = JsonConvert.DeserializeObject<List<StudentWithEnrollment>>(apiResponse);
+                }
+            }
+            return samurais;
+        }
+
         public async Task<Student> Insert(StudentCreateViewModel obj)
         {
             Student student = new Student();

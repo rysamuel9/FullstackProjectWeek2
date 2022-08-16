@@ -12,27 +12,32 @@
     <div class="col-md-4">
         <form asp-action="Update">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="mb-3 mt-3">
-                <label asp-for="EnrollmentID" class="form-label"></label>
+            <div class="form-group">
+                <label asp-for="EnrollmentID" class="control-label"></label>
                 <input asp-for="EnrollmentID" class="form-control" readonly="readonly" />
                 <span asp-validation-for="EnrollmentID" class="text-danger"></span>
             </div>
             <div class="mb-3 mt-3">
                 <label asp-for="StudentID" class="form-label"></label>
-                <input asp-for="StudentID" class="form-control" readonly="readonly" />
+                <select asp-for="StudentID" class="form-control" asp-items="@ViewBag.Student">
+                    <option value="">== SELECT STUDENT ==</option>
+                </select>
                 <span asp-validation-for="StudentID" class="text-danger"></span>
             </div>
             <div class="mb-3 mt-3">
                 <label asp-for="CourseID" class="form-label"></label>
-                <input asp-for="CourseID" class="form-control" />
+                <select asp-for="CourseID" class="form-control" asp-items="@ViewBag.Course">
+                    <option value="">== SELECT COURSE ==</option>
+                </select>
                 <span asp-validation-for="CourseID" class="text-danger"></span>
             </div>
             <div class="mb-3 mt-3">
-                <label asp-for="Grade" class="form-label"></label>
-                <input asp-for="Grade" class="form-control" />
+                <label asp-for="Grade" class="control-label"></label>
+                <select asp-for="Grade" asp-items="@Html.GetEnumSelectList<Grade>()" class="form-control">
+                </select>
                 <span asp-validation-for="Grade" class="text-danger"></span>
             </div>
-            <div class="mb-3 mt-3">
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
@@ -43,3 +48,8 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

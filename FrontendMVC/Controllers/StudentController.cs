@@ -105,5 +105,11 @@ namespace FrontendMVC.Controllers
                 return View();
             }
         }
+
+        public async Task<IActionResult> WithEnrollment()
+        {
+            var model = await _student.GetWithEnrollment();
+            return View(model);
+        }
     }
 }

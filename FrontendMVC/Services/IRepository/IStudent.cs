@@ -10,5 +10,6 @@ namespace FrontendMVC.Services.IRepository
         Task<Student> Insert(StudentCreateViewModel obj);
         Task<Student> Update(Student obj);
         Task Delete(int id);
+        Task<IEnumerable<StudentWithEnrollment>> GetWithEnrollment();
     }
 }

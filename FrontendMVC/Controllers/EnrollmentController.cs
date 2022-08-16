@@ -67,6 +67,8 @@ namespace FrontendMVC.Controllers
 
         public async Task<IActionResult> Update(int id)
         {
+            ViewBag.Course = new SelectList(await _course.GetAll(), "CourseID", "Title");
+            ViewBag.Student = new SelectList(await _student.GetAll(), "ID", "LastName");
             var model = await _enrollment.GetById(id);
             return View(model);
         }
