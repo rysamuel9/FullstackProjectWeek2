@@ -57,6 +57,7 @@ namespace FrontendMVC.Controllers
             try
             {
                 var result = await _enrollment.Insert(enrollment);
+                TempData["success"] = $"Enrollment created successfully";
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
@@ -69,6 +70,7 @@ namespace FrontendMVC.Controllers
         {
             ViewBag.Course = new SelectList(await _course.GetAll(), "CourseID", "Title");
             ViewBag.Student = new SelectList(await _student.GetAll(), "ID", "LastName");
+            TempData["success"] = $"Enrollment updated successfully";
             var model = await _enrollment.GetById(id);
             return View(model);
         }
@@ -100,7 +102,7 @@ namespace FrontendMVC.Controllers
             try
             {
                 await _enrollment.Delete(id);
-                TempData["pesan"] = $"<div class='alert alert-success alert-dismissible fade show'><button type='button' class='btn-close' data-bs-dismiss='alert'></button> Berhasil mendelete data course id: {id}</div>";
+                TempData["success"] = $"Enrollment deleted successfully";
                 return RedirectToAction("Index");
             }
             catch (Exception ex)

@@ -56,6 +56,7 @@ namespace FrontendMVC.Controllers
             try
             {
                 var result = await _student.Insert(course);
+                TempData["success"] = $"Student created successfully";
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
@@ -76,6 +77,7 @@ namespace FrontendMVC.Controllers
             try
             {
                 var result = await _student.Update(student);
+                TempData["success"] = $"Student updated successfully";
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
@@ -97,7 +99,7 @@ namespace FrontendMVC.Controllers
             try
             {
                 await _student.Delete(id);
-                TempData["pesan"] = $"<div class='alert alert-success alert-dismissible fade show'><button type='button' class='btn-close' data-bs-dismiss='alert'></button> Berhasil mendelete data course id: {id}</div>";
+                TempData["success"] = $"Student deleted successfully";
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
