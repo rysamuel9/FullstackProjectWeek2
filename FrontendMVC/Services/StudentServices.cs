@@ -55,16 +55,16 @@ namespace FrontendMVC.Services
 
         public async Task<IEnumerable<StudentWithEnrollment>> GetWithEnrollment()
         {
-            List<StudentWithEnrollment> samurais = new List<StudentWithEnrollment>();
+            List<StudentWithEnrollment> students = new List<StudentWithEnrollment>();
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync("https://localhost:7093/api/Students/WithEnrollments"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    samurais = JsonConvert.DeserializeObject<List<StudentWithEnrollment>>(apiResponse);
+                    students = JsonConvert.DeserializeObject<List<StudentWithEnrollment>>(apiResponse);
                 }
             }
-            return samurais;
+            return students;
         }
 
         public async Task<Student> Insert(StudentCreateViewModel obj)
@@ -84,6 +84,20 @@ namespace FrontendMVC.Services
             }
 
             return student;
+        }
+
+        public async Task<IEnumerable<Student>> SearchByName(string name)
+        {
+            List<Student> students = new List<Student>();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync($"https://localhost:7093/api/Students/SearchStudent?name={name}"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    students = JsonConvert.DeserializeObject<List<Student>>(apiResponse);
+                }
+            }
+            return students;
         }
 
         public async Task<Student> Update(Student obj)

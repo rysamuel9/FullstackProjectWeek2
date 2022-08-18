@@ -11,5 +11,6 @@ namespace FrontendMVC.Services.IRepository
         Task<Student> Update(Student obj);
         Task Delete(int id);
         Task<IEnumerable<StudentWithEnrollment>> GetWithEnrollment();
+        Task<IEnumerable<Student>> SearchByName(string name);
     }
 }

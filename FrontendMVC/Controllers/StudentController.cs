@@ -2,6 +2,7 @@
 using FrontendMVC.Services.IRepository;
 using FrontendMVC.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Xml.Linq;
 
 namespace FrontendMVC.Controllers
 {
@@ -14,29 +15,45 @@ namespace FrontendMVC.Controllers
             _student = student;
         }
 
-        public async Task<IActionResult> Index(int pg = 1)
+        public async Task<IActionResult> Index(string? name, int pg = 1)
         {
-            var models = await _student.GetAll();
-
-            const int pageSize = 5;
-            if (pg < 1)
+            IEnumerable<Student> models;
+            if (name == null)
             {
-                pg = 1;
+                models = await _student.GetAll();
+                const int pageSize = 10;
+                if (pg < 1)
+                {
+                    pg = 1;
+                }
+
+                int recsCount = models.Count();
+                var pager = new Pager(recsCount, pg, pageSize);
+                int recSkip = (pg - 1) * pageSize;
+                var data = models.Skip(recSkip).Take(pager.PageSize).ToList();
+                this.ViewBag.Pager = pager;
+                //return View(models);
+                return View(data);
+            } else
+            {
+                models = await _student.SearchByName(name);
             }
 
-            int recsCount = models.Count();
+            return View(models);
+            //var models = await _student.GetAll();
+            //const int pageSize = 5;
+            //if (pg < 1)
+            //{
+            //    pg = 1;
+            //}
 
-            var pager = new Pager(recsCount, pg, pageSize);
-
-            int recSkip = (pg - 1) * pageSize;
-
-            var data = models.Skip(recSkip).Take(pager.PageSize).ToList();
-
-            this.ViewBag.Pager = pager;
-
-            //return View(models);
-
-            return View(data);
+            //int recsCount = models.Count();
+            //var pager = new Pager(recsCount, pg, pageSize);
+            //int recSkip = (pg - 1) * pageSize;
+            //var data = models.Skip(recSkip).Take(pager.PageSize).ToList();
+            //this.ViewBag.Pager = pager;
+            ////return View(models);
+            //return View(data);
         }
 
         public async Task<IActionResult> Details(int id)
