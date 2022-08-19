@@ -45,6 +45,7 @@ namespace FrontendMVC.Controllers
             return View(model);
         }
 
+        [Authorize]
         public async Task<IActionResult> Create()
         {
             return View();
@@ -65,6 +66,7 @@ namespace FrontendMVC.Controllers
             }
         }
 
+        [Authorize]
         public async Task<IActionResult> Update(int id)
         {
             var model = await _course.GetById(id);
@@ -86,6 +88,7 @@ namespace FrontendMVC.Controllers
             }
         }
 
+        [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
             var model = await _course.GetById(id);

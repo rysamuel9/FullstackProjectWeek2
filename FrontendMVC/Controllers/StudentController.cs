@@ -1,6 +1,7 @@
 ﻿using FrontendMVC.Models;
 using FrontendMVC.Services.IRepository;
 using FrontendMVC.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Xml.Linq;
 
@@ -62,6 +63,7 @@ namespace FrontendMVC.Controllers
             return View(model);
         }
 
+        [Authorize]
         public async Task<IActionResult> Create()
         {
             return View();
@@ -82,6 +84,7 @@ namespace FrontendMVC.Controllers
             }
         }
 
+        [Authorize]
         public async Task<IActionResult> Update(int id)
         {
             var model = await _student.GetById(id);
@@ -103,6 +106,7 @@ namespace FrontendMVC.Controllers
             }
         }
 
+        [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
             var model = await _student.GetById(id);

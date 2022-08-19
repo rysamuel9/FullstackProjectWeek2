@@ -25,6 +25,15 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 }).AddDefaultUI().AddDefaultTokenProviders()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+builder.Services.AddSession(options =>
+{
+    options.Cookie.Name = "mysession.frontend";
+    options.IdleTimeout = TimeSpan.FromMinutes(2);
+    options.Cookie.IsEssential = true;
+});
+
+builder.Services.ConfigureApplicationCookie(opt => opt.LoginPath = "/Account/Login");
+
 builder.Services.AddScoped<ICourse, CourseServices>();
 builder.Services.AddScoped<IStudent, StudentServices>();
 builder.Services.AddScoped<IEnrollment, EnrollmentServices>();

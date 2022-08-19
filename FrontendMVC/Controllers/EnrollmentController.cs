@@ -1,6 +1,7 @@
 ﻿using FrontendMVC.Models;
 using FrontendMVC.Services.IRepository;
 using FrontendMVC.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -30,6 +31,7 @@ namespace FrontendMVC.Controllers
             return View(model);
         }
 
+        [Authorize]
         public async Task<IActionResult> Create()
         {
             ViewBag.Course = new SelectList(await _course.GetAll(), "CourseID", "Title");
@@ -66,6 +68,7 @@ namespace FrontendMVC.Controllers
             }
         }
 
+        [Authorize]
         public async Task<IActionResult> Update(int id)
         {
             ViewBag.Course = new SelectList(await _course.GetAll(), "CourseID", "Title");
@@ -89,6 +92,7 @@ namespace FrontendMVC.Controllers
             }
         }
 
+        [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
             var model = await _enrollment.GetById(id);
