@@ -7,12 +7,14 @@
 <h1 class="mt-4">Detail Course</h1>
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+    <li class="breadcrumb-item"><a asp-controller="Course" asp-action="Index">Course List</a></li>
     <li class="breadcrumb-item active">Detail</li>
 </ol>
 
-<div class="card-mb-4">
-    <div class="card-body">
-        <div class="col-md-6">
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Insert New Student</h4>
             <dl class="row">
                 <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.CourseID)
@@ -34,10 +36,10 @@
                 </dd>
             </dl>
         </div>
+        <div class="mb-3">
+            <a class="btn btn-warning" asp-controller="Course" asp-action="Update">Edit</a>
+            <a class="btn btn-info" asp-controller="Course" asp-action="Index">Back to List</a>
+        </div>
     </div>
 </div>
 
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
-</div>

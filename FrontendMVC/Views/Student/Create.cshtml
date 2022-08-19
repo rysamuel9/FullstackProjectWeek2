@@ -4,22 +4,21 @@
     ViewData["Title"] = "Create";
 }
 
+<h1 class="mt-4">Insert Student</h1>
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
-    <li class="breadcrumb-item active">Create Student</li>
+    <li class="breadcrumb-item"><a asp-controller="Student" asp-action="Index">Student List</a></li>
+    <li class="breadcrumb-item active">Insert Student</li>
 </ol>
 
 <div class="col-md-6 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Insert New Student</h4>
-            <p class="card-description">
-                Basic form layout
-            </p>
             <form asp-action="Create">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="mb-3 mt-3">
-                    <label asp-for="FirstMidName" class="form-label"> First/Mid Name</label>
+                    <label asp-for="FirstMidName" class="form-label"> First Name</label>
                     <input asp-for="FirstMidName" class="form-control" />
                     <span asp-validation-for="FirstMidName" class="text-danger"></span>
                 </div>
@@ -33,7 +32,7 @@
                 </div>
             </form>
         </div>
-        <div class="card">
+        <div class="card mb-3">
             <a class="btn btn-info" asp-action="Index">Back to List</a>
         </div>
     </div>
