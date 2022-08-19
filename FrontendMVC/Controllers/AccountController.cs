@@ -8,11 +8,21 @@ namespace FrontendMVC.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly IUser _user;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
 
-        public AccountController(IUser user)
+        //private readonly IUser _user;
+
+        //public AccountController(IUser user)
+        //{
+        //    _user = user;
+        //}
+
+        public AccountController(UserManager<IdentityUser> userManager,
+            SignInManager<IdentityUser> signInManager)
         {
-            _user = user;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         public IActionResult Index()
@@ -20,16 +30,46 @@ namespace FrontendMVC.Controllers
             return View();
         }
 
-        [AllowAnonymous]
-        public IActionResult Login(string? returnUrl)
+        public IActionResult Register()
         {
-            if (!string.IsNullOrEmpty(returnUrl))
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
             {
-                ViewBag.returnUrl = returnUrl;
+                var user = new IdentityUser { UserName = model.Email, Email = model.Email };
+                var result = await _userManager.CreateAsync(user, model.Password);
+
+                if (result.Succeeded)
+                {
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    TempData["success"] = $"Register Successfully";
+                    TempData["success"] = $"Youre Logged In";
+                    return RedirectToAction("Index", "Home");
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
             }
 
             return View();
         }
+
+        //[AllowAnonymous]
+        //public IActionResult Login(string? returnUrl)
+        //{
+        //    if (!string.IsNullOrEmpty(returnUrl))
+        //    {
+        //        ViewBag.returnUrl = returnUrl;
+        //    }
+
+        //    return View();
+        //}
 
         //[AllowAnonymous]
         //[HttpPost]
