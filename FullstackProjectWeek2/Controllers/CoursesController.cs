@@ -23,7 +23,7 @@ namespace FullstackProjectWeek2.Controllers
             _mapper = mapper;
         }
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [HttpGet("Paging")]
         public async Task<IEnumerable<CourseReadDTO>> Paging([FromQuery] PaginationParams @params)
         {
@@ -33,7 +33,7 @@ namespace FullstackProjectWeek2.Controllers
         }
 
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [HttpGet]
         public async Task<IEnumerable<CourseReadDTO>> GetAll()
         {

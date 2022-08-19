@@ -1,4 +1,7 @@
-﻿@{
+﻿@model IEnumerable<FrontendMVC.Models.Course>
+
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -14,5 +17,34 @@
             Selamat datang di App
             <h3>Hello! @User.Identity.Name</h3>
         </p>
+    </div>
+</div>
+
+<div class="col-md-6 grid-margin transparent">
+    <div class="row">
+        <div class="col-md-6 mb-4 stretch-card transparent">
+            <div class="card card-tale">
+                <div class="card-body">
+                    <p class="mb-4">Total Course</p>
+                    <p class="fs-30 mb-2">@ViewBag.Course.Count</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4 stretch-card transparent">
+            <div class="card card-dark-blue">
+                <div class="card-body">
+                    <p class="mb-4">Total Student</p>
+                    <p class="fs-30 mb-2">@ViewBag.Student.Count</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4 stretch-card transparent">
+            <div class="card card-dark-blue">
+                <div class="card-body">
+                    <p class="mb-4">Total Enrollment</p>
+                    <p class="fs-30 mb-2">@ViewBag.Enrollment.Count</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
