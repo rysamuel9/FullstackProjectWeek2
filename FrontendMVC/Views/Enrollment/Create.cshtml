@@ -4,50 +4,48 @@
     ViewData["Title"] = "Create";
 }
 
-<h1 class="mt-4">Enrollment Form</h1>
+<h1 class="mt-4">Create Enrollment</h1>
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
-    <li class="breadcrumb-item active">Enrollment</li>
+    <li class="breadcrumb-item"><a asp-controller="Enrollment" asp-action="Index">Enrollment List</a></li>
+    <li class="breadcrumb-item active">Create</li>
 </ol>
 
 
-<div class="card-mb-4">
-    <div class="card-body">
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-4">
-                    <form asp-action="Create">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        <div class="mb-3 mt-3">
-                            <label asp-for="CourseID" class="form-label"></label>
-                            <select asp-for="CourseID" class="form-control" asp-items="@ViewBag.Course">
-                                <option value="">== SELECT COURSE ==</option>
-                            </select>
-                            <span asp-validation-for="CourseID" class="text-danger"></span>
-                        </div>
-                        <div class="mb-3 mt-3">
-                            <label asp-for="StudentID" class="form-label"></label>
-                            <select asp-for="StudentID" class="form-control" asp-items="@ViewBag.Student">
-                                <option value="">== SELECT STUDENT ==</option>
-                            </select>
-                            <span asp-validation-for="StudentID" class="text-danger"></span>
-                        </div>
-                        <div class="mb-3 mt-3">
-                            <label asp-for="Grade" class="control-label"></label>
-                            <select asp-for="Grade" asp-items="@Html.GetEnumSelectList<Grade>()" class="form-control">
-                            </select>
-                            <span asp-validation-for="Grade" class="text-danger"></span>
-                        </div>
-                        <div class="mb-3 mt-3">
-                            <input type="submit" value="Create" class="btn btn-primary" />
-                        </div>
-                    </form>
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Insert New Student</h4>
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="mb-3 mt-3">
+                    <label asp-for="CourseID" class="form-label"></label>
+                    <select asp-for="CourseID" class="form-control" asp-items="@ViewBag.Course">
+                        <option value="">==Select Course==</option>
+                    </select>
+                    <span asp-validation-for="CourseID" class="text-danger"></span>
                 </div>
-            </div>
+                <div class="mb-3 mt-3">
+                    <label asp-for="StudentID" class="form-label"></label>
+                    <select asp-for="StudentID" class="form-control" asp-items="@ViewBag.Student">
+                        <option value="">==Select Student==</option>
+                    </select>
+                    <span asp-validation-for="StudentID" class="text-danger"></span>
+                </div>
+                <div class="mb-3 mt-3">
+                    <label asp-for="Grade" class="control-label"></label>
+                    <select asp-for="Grade" asp-items="@Html.GetEnumSelectList<Grade>()" class="form-control">
+                    </select>
+                    <span asp-validation-for="Grade" class="text-danger"></span>
+                </div>
+                <div class="mb-3 mt-3">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+        <div>
+            <a class="btn btn-info" asp-action="Index">Back to List</a>
         </div>
     </div>
-</div>
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
