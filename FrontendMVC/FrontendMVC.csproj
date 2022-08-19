@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\skydash\" />
     <Folder Include="wwwroot\startbootstrap\" />
   </ItemGroup>
 
