@@ -46,8 +46,7 @@ namespace FrontendMVC.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    TempData["success"] = $"Register Successfully";
-                    TempData["success"] = $"Youre Logged In";
+                    TempData["success"] = $"Register Successfully, Youre Logged In";
                     return RedirectToAction("Index", "Home");
                 }
 
@@ -58,6 +57,38 @@ namespace FrontendMVC.Controllers
             }
 
             return View();
+        }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+
+                if (result.Succeeded)
+                {
+                    TempData["success"] = $"Login Successfully";
+                    return RedirectToAction("Index", "Home");
+                }
+
+                TempData["error"] = $"Login Failed";
+                ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
+            }
+
+            return View(model);
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            TempData["success"] = $"Youre Logged Out";
+            return RedirectToAction("Index", "Home");
         }
 
         //[AllowAnonymous]
