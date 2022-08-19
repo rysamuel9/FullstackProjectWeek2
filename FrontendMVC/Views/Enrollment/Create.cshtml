@@ -4,6 +4,8 @@
     ViewData["Title"] = "Create";
 }
 
+
+
 <h1 class="mt-4">Create Enrollment</h1>
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
@@ -15,19 +17,19 @@
 <div class="col-md-6 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Insert New Student</h4>
+            <h4 class="card-title">Insert New Enrollment</h4>
             <form asp-action="Create">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="mb-3 mt-3">
-                    <label asp-for="CourseID" class="form-label"></label>
-                    <select asp-for="CourseID" class="form-control" asp-items="@ViewBag.Course">
+                    <label asp-for="CourseID" class="form-label">Course Title</label>
+                    <select asp-for="CourseID" class="form control js-example-basic-single w-100" asp-items="@ViewBag.Course">
                         <option value="">==Select Course==</option>
                     </select>
                     <span asp-validation-for="CourseID" class="text-danger"></span>
                 </div>
                 <div class="mb-3 mt-3">
-                    <label asp-for="StudentID" class="form-label"></label>
-                    <select asp-for="StudentID" class="form-control" asp-items="@ViewBag.Student">
+                    <label asp-for="StudentID" class="form-label">Student Name</label>
+                    <select asp-for="StudentID" class="form control js-example-basic-single w-100" asp-items="@ViewBag.Student">
                         <option value="">==Select Student==</option>
                     </select>
                     <span asp-validation-for="StudentID" class="text-danger"></span>
@@ -48,4 +50,3 @@
         </div>
     </div>
 </div>
-

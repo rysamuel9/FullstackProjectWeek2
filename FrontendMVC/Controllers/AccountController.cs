@@ -76,9 +76,11 @@ namespace FrontendMVC.Controllers
                     TempData["success"] = $"Login Successfully";
                     return RedirectToAction("Index", "Home");
                 }
-
-                TempData["error"] = $"Login Failed";
-                ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
+                else
+                {
+                    TempData["error"] = $"Login Failed";
+                    ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
+                }
             }
 
             return View(model);

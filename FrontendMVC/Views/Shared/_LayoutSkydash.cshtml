@@ -10,6 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Enrollment</title>
     <!-- plugins:css -->
+    <link rel="stylesheet" href="~/skydash/vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="~/skydash/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
 
     <link rel="stylesheet" href="~/skydash/vendors/feather/feather.css">
     <link rel="stylesheet" href="~/skydash/vendors/ti-icons/css/themify-icons.css">
@@ -34,8 +36,11 @@
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                @*
                 <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="~/skydash/images/logo.svg" class="mr-2" alt="logo" /></a>
                 <a class="navbar-brand brand-logo-mini" href="index.html"><img src="~/skydash/images/logo-mini.svg" alt="logo" /></a>
+                *@
+                <h3>MyApp</h3>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -98,25 +103,26 @@
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
             <!-- partial:partials/_settings-panel.html -->
+            @*
             <div class="theme-setting-wrapper">
-                <div id="settings-trigger"><i class="ti-settings"></i></div>
-                <div id="theme-settings" class="settings-panel">
-                    <i class="settings-close ti-close"></i>
-                    <p class="settings-heading">SIDEBAR SKINS</p>
-                    <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border mr-3"></div>Light</div>
-                    <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark</div>
-                    <p class="settings-heading mt-2">HEADER SKINS</p>
-                    <div class="color-tiles mx-0 px-4">
-                        <div class="tiles success"></div>
-                        <div class="tiles warning"></div>
-                        <div class="tiles danger"></div>
-                        <div class="tiles info"></div>
-                        <div class="tiles dark"></div>
-                        <div class="tiles default"></div>
-                    </div>
-                </div>
+            <div id="settings-trigger"><i class="ti-settings"></i></div>
+            <div id="theme-settings" class="settings-panel">
+            <i class="settings-close ti-close"></i>
+            <p class="settings-heading">SIDEBAR SKINS</p>
+            <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border mr-3"></div>Light</div>
+            <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark</div>
+            <p class="settings-heading mt-2">HEADER SKINS</p>
+            <div class="color-tiles mx-0 px-4">
+            <div class="tiles success"></div>
+            <div class="tiles warning"></div>
+            <div class="tiles danger"></div>
+            <div class="tiles info"></div>
+            <div class="tiles dark"></div>
+            <div class="tiles default"></div>
             </div>
-
+            </div>
+            </div>
+            *@
             <!-- partial -->
             <!-- partial:partials/_sidebar.html -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -190,6 +196,10 @@
         <!-- container-scroller -->
         <!-- plugins:js -->
         <script src="~/skydash/vendors/js/vendor.bundle.base.js"></script>
+
+        <script src="~/skydash/vendors/select2/select2.min.js"></script>
+        <script src="~/skydash/js/select2.js"></script>
+
         <!-- endinject -->
         <!-- Plugin js for this page -->
         <script src="~/skydash/vendors/chart.js/Chart.min.js"></script>

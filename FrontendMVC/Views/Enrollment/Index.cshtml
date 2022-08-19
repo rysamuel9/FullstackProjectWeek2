@@ -24,15 +24,17 @@
                             @Html.DisplayNameFor(model => model.EnrollmentID)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Student.FirstMidName)
+                            @Html.DisplayNameFor(model => model.StudentID)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Course.Title)
+                            @Html.DisplayNameFor(model => model.CourseID)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.Grade)
                         </th>
-                        <th></th>
+                        <th>
+                            Action
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,10 +45,10 @@
                                 @Html.DisplayFor(modelItem => item.EnrollmentID)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Student.FirstMidName)
+                                @Html.DisplayFor(modelItem => item.StudentID)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Course.Title)
+                                @Html.DisplayFor(modelItem => item.CourseID)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Grade)

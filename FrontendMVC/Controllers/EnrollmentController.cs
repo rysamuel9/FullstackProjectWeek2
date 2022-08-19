@@ -22,6 +22,8 @@ namespace FrontendMVC.Controllers
         public async Task<IActionResult> Index()
         {
             var models = await _enrollment.GetAll();
+            ViewBag.Course = await _course.GetAll();
+            ViewBag.Student = await _student.GetAll();
             return View(models);
         }
 
