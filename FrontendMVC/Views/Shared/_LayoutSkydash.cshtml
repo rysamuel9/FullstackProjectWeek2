@@ -8,7 +8,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Student Enrollment</title>
+    <title>Enrollment</title>
     <!-- plugins:css -->
 
     <link rel="stylesheet" href="~/skydash/vendors/feather/feather.css">
@@ -127,30 +127,35 @@
                             <span class="menu-title">Dashboard</span>
                         </a>
                     </li>
+
+
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="Course" asp-action="Index">
                             <i class="icon-grid menu-icon"></i>
                             <span class="menu-title">Course List</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Student" asp-action="Index">
-                            <i class="icon-grid menu-icon"></i>
-                            <span class="menu-title">Student List</span>
-                        </a>
-                    </li>
+
+
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                             <i class="icon-layout menu-icon"></i>
-                            <span class="menu-title">Enrollments</span>
+                            <span class="menu-title">Students</span>
                             <i class="menu-arrow"></i>
                         </a>
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" asp-controller="Enrollment" asp-action="Index">Enrollment List</a></li>
-                                <li class="nav-item">  <a class="nav-link" asp-controller="Student" asp-action="WithEnrollment">Student Enrollments</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="Student" asp-action="Index">Student List</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="Student" asp-action="WithEnrollment">Student Enrollment</a></li>
                             </ul>
                         </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Enrollment" asp-action="Index">
+                            <i class="icon-grid menu-icon"></i>
+                            <span class="menu-title">Enrollment</span>
+                        </a>
                     </li>
 
                 </ul>
